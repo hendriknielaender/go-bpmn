@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_12fuprs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="9.3.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="1.1.0">
+  <bpmn:process id="exclusive-gateway-with-condition-and-default" name="exclusive-gateway-with-condition-and-default" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1y8jegt</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_01wr5g0">
+      <bpmn:incoming>Flow_1y8jegt</bpmn:incoming>
+      <bpmn:outgoing>price-gt-zero</bpmn:outgoing>
+      <bpmn:outgoing>default</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1y8jegt" sourceRef="StartEvent_1" targetRef="Gateway_01wr5g0" />
+    <bpmn:sequenceFlow id="price-gt-zero" name="value &#62; 0" sourceRef="Gateway_01wr5g0" targetRef="Event_1g3ipua">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">price &gt; 0</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="default" name="default" sourceRef="Gateway_01wr5g0" targetRef="Event_196zxhe" />
+    <bpmn:endEvent id="Event_196zxhe">
+      <bpmn:incoming>default</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_1g3ipua">
+      <bpmn:incoming>price-gt-zero</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="exclusive-gateway-with-condition-and-default">
+      <bpmndi:BPMNEdge id="Flow_1cjigq1_di" bpmnElement="default">
+        <di:waypoint x="310" y="245" />
+        <di:waypoint x="310" y="290" />
+        <di:waypoint x="512" y="290" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="321" y="327" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gf8oc6_di" bpmnElement="price-gt-zero">
+        <di:waypoint x="310" y="195" />
+        <di:waypoint x="310" y="130" />
+        <di:waypoint x="512" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="318" y="80" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y8jegt_di" bpmnElement="Flow_1y8jegt">
+        <di:waypoint x="215" y="220" />
+        <di:waypoint x="285" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_01wr5g0_di" bpmnElement="Gateway_01wr5g0" isMarkerVisible="true">
+        <dc:Bounds x="285" y="195" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_196zxhe_di" bpmnElement="Event_196zxhe">
+        <dc:Bounds x="512" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1g3ipua_di" bpmnElement="Event_1g3ipua">
+        <dc:Bounds x="512" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
